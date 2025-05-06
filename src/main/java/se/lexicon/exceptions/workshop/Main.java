@@ -29,7 +29,7 @@ public class Main {
         //non-existing names
         System.out.println("Trying with a non-existing female firstname");
         try {
-            nameService.addFemaleFirstName("Alice");
+            nameService.addFemaleFirstName("Ebba");
         } catch (DuplicateNameException e) {
             System.out.println(e.getMessage());
         }
