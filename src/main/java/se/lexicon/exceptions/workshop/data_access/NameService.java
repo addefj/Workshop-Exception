@@ -5,6 +5,7 @@ import java.util.Random;
 
 import se.lexicon.exceptions.workshop.domain.Gender;
 import se.lexicon.exceptions.workshop.domain.Person;
+import se.lexicon.exceptions.workshop.exeption.DuplicateNameException;
 import se.lexicon.exceptions.workshop.fileIO.CSVReader_Writer;
 
 public class NameService {
@@ -59,10 +60,13 @@ public class NameService {
 	     * Here you need to check if List<String> femaleFirstNames already contains the name
 	     * If name already exists throw a new custom exception you will have to create called
 	     * DuplicateNameException.
-	     * @param name
+	     * @param name name to be added to the list
 	     */
-	    public void addFemaleFirstName(String name){
-	    	femaleFirstNames.add(name);
+	    public void addFemaleFirstName(String name) throws DuplicateNameException {
+	    	for(String n : femaleFirstNames){
+				if(n.equals(name)) throw new DuplicateNameException("The name was already found in the list, please try another one");
+			}
+			femaleFirstNames.add(name);
 	    	CSVReader_Writer.saveFemaleNames(femaleFirstNames);
 	    		
 	    }
@@ -71,10 +75,13 @@ public class NameService {
 	     * Here you need to check if List<String> maleFirstNames already contains the name
 	     * If name already exists throw a new custom exception you will have to create called
 	     * DuplicateNameException.
-	     * @param name
+	     * @param name name to be added to the list
 	     */
-	    public void addMaleFirstName(String name){
-	    	maleFirstNames.add(name);
+	    public void addMaleFirstName(String name) throws DuplicateNameException {
+			for(String n : maleFirstNames){
+				if(n.equals(name)) throw new DuplicateNameException("The name was already found in the list, please try another one");
+			}
+			maleFirstNames.add(name);
 	        CSVReader_Writer.saveMaleNames(maleFirstNames);
 	    }
 
@@ -82,10 +89,13 @@ public class NameService {
 	     * Here you need to check if List<String> lastNames already contains the name
 	     * If name already exists throw a new custom exception you will have to create called
 	     * DuplicateNameException.
-	     * @param lastName
+	     * @param lastName name to be added to the list
 	     */
-	    public void addLastName(String lastName){
-	    	lastNames.add(lastName);
+	    public void addLastName(String lastName) throws DuplicateNameException {
+			for(String ln : lastNames){
+				if(ln.equals(lastName)) throw new DuplicateNameException("The name was already found in the list, please try another one");
+			}
+			lastNames.add(lastName);
 	        CSVReader_Writer.saveLastNames(lastNames);
 	    }
 
